@@ -51,7 +51,8 @@ class AuditLogsController extends Controller
                 return $row->subject_type ? $row->subject_type : '';
             });
             $table->editColumn('user_id', function ($row) {
-                return $row->user_id ? $row->user_id : '';
+                // return $row->user_id ? $row->user_id : '';
+                return $row->user_id ? ($row->user_info->name ?? '') : '';
             });
             $table->editColumn('host', function ($row) {
                 return $row->host ? $row->host : '';
@@ -68,7 +69,7 @@ class AuditLogsController extends Controller
     public function show(AuditLog $auditLog)
     {
         abort_if(Gate::denies('audit_log_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
+        $auditLog->load('user_info');
         return view('admin.auditLogs.show', compact('auditLog'));
     }
 }

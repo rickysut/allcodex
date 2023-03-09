@@ -8,11 +8,7 @@
 
     <div class="card-body">
         <div class="form-group">
-            <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.audit-logs.index') }}">
-                    {{ trans('global.back_to_list') }}
-                </a>
-            </div>
+            
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
@@ -52,7 +48,7 @@
                             {{ trans('cruds.auditLog.fields.user_id') }}
                         </th>
                         <td>
-                            {{ $auditLog->user_id }}
+                            {{ ($auditLog->user_info->name ?? '-') }}
                         </td>
                     </tr>
                     <tr>
@@ -82,7 +78,7 @@
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.audit-logs.index') }}">
+                <a class="btn btn-primary" href="{{ route('admin.audit-logs.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

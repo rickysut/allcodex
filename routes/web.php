@@ -28,49 +28,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Audit Logs
     Route::resource('audit-logs', 'AuditLogsController', ['except' => ['create', 'store', 'edit', 'update', 'destroy']]);
 
-    // Provinsi
-    Route::delete('provinsis/destroy', 'ProvinsiController@massDestroy')->name('provinsis.massDestroy');
-    Route::post('provinsis/parse-csv-import', 'ProvinsiController@parseCsvImport')->name('provinsis.parseCsvImport');
-    Route::post('provinsis/process-csv-import', 'ProvinsiController@processCsvImport')->name('provinsis.processCsvImport');
-    Route::resource('provinsis', 'ProvinsiController');
-
-    // Kabupaten
-    Route::delete('kabupatens/destroy', 'KabupatenController@massDestroy')->name('kabupatens.massDestroy');
-    Route::post('kabupatens/parse-csv-import', 'KabupatenController@parseCsvImport')->name('kabupatens.parseCsvImport');
-    Route::post('kabupatens/process-csv-import', 'KabupatenController@processCsvImport')->name('kabupatens.processCsvImport');
-    Route::resource('kabupatens', 'KabupatenController');
-
-    // Kecamatan
-    Route::delete('kecamatans/destroy', 'KecamatanController@massDestroy')->name('kecamatans.massDestroy');
-    Route::post('kecamatans/parse-csv-import', 'KecamatanController@parseCsvImport')->name('kecamatans.parseCsvImport');
-    Route::post('kecamatans/process-csv-import', 'KecamatanController@processCsvImport')->name('kecamatans.processCsvImport');
-    Route::resource('kecamatans', 'KecamatanController');
-
-    // Desa
-    Route::delete('desas/destroy', 'DesaController@massDestroy')->name('desas.massDestroy');
-    Route::post('desas/parse-csv-import', 'DesaController@parseCsvImport')->name('desas.parseCsvImport');
-    Route::post('desas/process-csv-import', 'DesaController@processCsvImport')->name('desas.processCsvImport');
-    Route::resource('desas', 'DesaController');
-
-    // Satker
-    Route::delete('satkers/destroy', 'SatkerController@massDestroy')->name('satkers.massDestroy');
-    Route::post('satkers/parse-csv-import', 'SatkerController@parseCsvImport')->name('satkers.parseCsvImport');
-    Route::post('satkers/process-csv-import', 'SatkerController@processCsvImport')->name('satkers.processCsvImport');
-    Route::resource('satkers', 'SatkerController');
-
-    // Detail Pagu
-    Route::resource('detail-pagus', 'DetailPaguController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
-
-    // Data Realisasi
-    Route::delete('data-realisasis/destroy', 'DataRealisasiController@massDestroy')->name('data-realisasis.massDestroy');
-    Route::post('data-realisasis/parse-csv-import', 'DataRealisasiController@parseCsvImport')->name('data-realisasis.parseCsvImport');
-    Route::post('data-realisasis/process-csv-import', 'DataRealisasiController@processCsvImport')->name('data-realisasis.processCsvImport');
-    Route::resource('data-realisasis', 'DataRealisasiController');
-
-    // Detailbanpem
-    Route::delete('detailbanpems/destroy', 'DetailbanpemController@massDestroy')->name('detailbanpems.massDestroy');
-    Route::resource('detailbanpems', 'DetailbanpemController');
-
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -91,3 +48,5 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
 });
+
+?>

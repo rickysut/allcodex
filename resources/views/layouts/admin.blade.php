@@ -22,6 +22,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/1.5.0/css/perfect-scrollbar.min.css" rel="stylesheet" />
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" />
     @yield('styles')
 </head>
 
@@ -55,6 +56,49 @@
 
 
             </ul>
+            <div class="dropdown d-inline-block mr-2">
+                <button type="button" class="btn header-item user text-start d-flex align-items-center mr-4"
+                    id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img class="rounded-circle header-profile-user mr-3"
+                        src="{{ asset('img/avatar-1.jpg') }}" alt="Header Avatar">
+                    <span class="ms-2 d-none d-sm-block user-item-desc">
+                        <span class="user-name">{{ auth()->user()->name }}</span>
+                        @foreach (auth()->user()->roles as $role) 
+                            <span class="user-sub-title">{{ ucfirst($role->title) }}</span>
+                        @endforeach
+                    </span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end pt-0" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(-41px, 71px, 0px); width: 200px">
+                    <div class="p-3 bg-primary border-bottom">
+                        <h6 class="mb-0 text-white">{{ auth()->user()->name }}</h6>
+                        <p class="mb-0 font-size-11 text-white-50 fw-semibold">{{ Str::mask(auth()->user()->email,'*', 5    ) }}</p>
+                    </div>
+                    <a class="dropdown-item" href="{{ route('profile.password.edit') }}"><i
+                            class="fa fa-user text-muted font-size-16"></i> <span
+                            class="align-middle ml-2">&nbsp;Profile</span></a>
+
+                    @if (auth()->user()->role != 'reseller')
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-wallet text-muted font-size-16"></i>
+                            <span class="align-middle ml-2">&nbsp;Balance<b>
+                                    {{-- {{ url(auth()->user()->role) }} --}}
+                                </b></span>
+                        </a>
+                    @endif
+
+
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-fw fa-sign-out-alt text-muted font-size-16 "></i> <span
+                            class="align-middle">&nbsp;Logout</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
         </header>
 
         <div class="c-body">
@@ -170,22 +214,22 @@
           columns: ':visible'
         }
       },
-      {
-        extend: 'copy',
-        className: 'btn-default',
-        text: copyButtonTrans,
-        exportOptions: {
-          columns: ':visible'
-        }
-      },
-      {
-        extend: 'csv',
-        className: 'btn-default',
-        text: csvButtonTrans,
-        exportOptions: {
-          columns: ':visible'
-        }
-      },
+      // {
+      //   extend: 'copy',
+      //   className: 'btn-default',
+      //   text: copyButtonTrans,
+      //   exportOptions: {
+      //     columns: ':visible'
+      //   }
+      // },
+      // {
+      //   extend: 'csv',
+      //   className: 'btn-default',
+      //   text: csvButtonTrans,
+      //   exportOptions: {
+      //     columns: ':visible'
+      //   }
+      // },
       {
         extend: 'excel',
         className: 'btn-default',
@@ -194,22 +238,22 @@
           columns: ':visible'
         }
       },
-      {
-        extend: 'pdf',
-        className: 'btn-default',
-        text: pdfButtonTrans,
-        exportOptions: {
-          columns: ':visible'
-        }
-      },
-      {
-        extend: 'print',
-        className: 'btn-default',
-        text: printButtonTrans,
-        exportOptions: {
-          columns: ':visible'
-        }
-      },
+      // {
+      //   extend: 'pdf',
+      //   className: 'btn-default',
+      //   text: pdfButtonTrans,
+      //   exportOptions: {
+      //     columns: ':visible'
+      //   }
+      // },
+      // {
+      //   extend: 'print',
+      //   className: 'btn-default',
+      //   text: printButtonTrans,
+      //   exportOptions: {
+      //     columns: ':visible'
+      //   }
+      // },
       {
         extend: 'colvis',
         className: 'btn-default',
