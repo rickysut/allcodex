@@ -46,6 +46,9 @@ class RolesController extends Controller
             $table->editColumn('title', function ($row) {
                 return $row->title ? $row->title : '';
             });
+            $table->editColumn('default', function ($row) {
+                return $row->default ? ($row->default==1) ?? 'yes': 'no';
+            });
             $table->editColumn('permissions', function ($row) {
                 $labels = [];
                 foreach ($row->permissions as $permission) {
@@ -104,11 +107,13 @@ class RolesController extends Controller
 
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        $default =($request->default == 'on') ? 1 : 0;
-        if ($default == 1) {
+        $def =($request->default == 'on') ? 1 : 0;
+        if ($def == 1) {
             Role::where('default', 1)->update(['default' => 0]);
         }
-        $role->default = $default;
+        $request->merge([
+            'default' => $def,
+        ]);
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
         session()->flash('message', trans('global.update_success'));
