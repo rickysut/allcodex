@@ -67,16 +67,26 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $permissions = Permission::pluck('title', 'id');
+        $permissions = Permission::pluck('title','id' );
+        $permi = Permission::all();
+        $grpTitle = trans('cruds');
 
-        return view('admin.roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions' , 'permi', 'grpTitle'));
     }
 
     public function store(StoreRoleRequest $request)
     {
+        $default =($request->default == 'on') ? 1 : 0;
+        if ($default == 1) {
+            Role::where('default', 1)->update(['default' => 0]);
+        }
+        
+        $request->merge([
+            'default' => $default,
+        ]);
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
-
+        session()->flash('message', trans('global.create_success'));
         return redirect()->route('admin.roles.index');
     }
 
@@ -94,6 +104,11 @@ class RolesController extends Controller
 
     public function update(UpdateRoleRequest $request, Role $role)
     {
+        $default =($request->default == 'on') ? 1 : 0;
+        if ($default == 1) {
+            Role::where('default', 1)->update(['default' => 0]);
+        }
+        $role->default = $default;
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
         session()->flash('message', trans('global.update_success'));

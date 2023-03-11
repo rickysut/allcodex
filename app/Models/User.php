@@ -36,7 +36,6 @@ class User  extends Authenticatable implements MustVerifyEmail
 
     protected $fillable = [
         'name',
-        'username',
         'email',
         'email_verified_at',
         'password',
@@ -88,4 +87,8 @@ class User  extends Authenticatable implements MustVerifyEmail
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    
 }
+
+

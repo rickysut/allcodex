@@ -30,8 +30,10 @@
     @yield('styles')
 </head>
 
-<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page">
-    <div class="c-app flex-row align-items-center">
+<body class="header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden login-page" >
+    <div class="c-app flex-row align-items-center" style="background-image: url('/images/auth-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;">
         <div class="container">
             @yield("content")
         </div>

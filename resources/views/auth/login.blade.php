@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<div class="row justify-content-center">
+
+    
+<div class="row justify-content-center my-auto">
     <div class="col-md-6">
         <div class="card mx-4">
             <div class="card-body p-4 text-center">
@@ -92,15 +94,17 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="text-center text-muted p-4">
-            <p class="mb-0">&copy;
-                <script>
-                    document.write(new Date().getFullYear())
-                </script> All Rights Reserved <i class="fa fa-heart text-danger"></i> Allcodex</p>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center text-muted p-4">
+                <p class="mb-0">&copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                        </script> All Rights Reserved <i class="fa fa-heart text-danger"></i> Allcodex</p>
+            </div>
         </div>
     </div>
 </div>
+        
+
 @endsection

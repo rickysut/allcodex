@@ -1,15 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row justify-content-center ">
         <div class="col-md-8 col-lg-6 col-xl-6">
             <div class="card">
                 {{-- <div class="card-header">{{ __('Verify Your Email Address') }}</div> --}}
 
                 <div class="card-body">
-                    <div class="text-center py-5">
-
+                    <div class="text-center py-3">
                         <div class="mb-4 mb-md-5">
                             <div class="avatar-lg mx-auto">
                                 <div class="avatar-title bg-light text-primary display-5 rounded-circle">
@@ -25,31 +23,19 @@
                                 </div>
                             @endif
                             {{ __('Before proceeding, please check your email for a verification link.') }}
-                            {{ __('If you did not receive the email') }},
-                            
+                            <br/>
+
                         </div>
                         
-                        <div class="mt-5 text-center text-muted">
+                        <div class="mt-3 text-center text-muted">
                             <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                                 @csrf
-                                <button type="submit" class="btn btn-info w-100">{{ __('Click here to request another') }}</button>.
+                                <button type="submit" class="btn btn-info w-100">{{ __('If you did not receive the email, click here to request another') }}</button>.
                             </form>
                         </div>
                         <p>Have you complete Verification ? <a href="{{ route('login') }}"
                                 class="fw-medium text-decoration-underline"> {{ __('Login') }} </a></p>
                     </div>
-                    {{-- @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form> --}}
                 </div>
             </div>
         </div>
@@ -64,5 +50,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
